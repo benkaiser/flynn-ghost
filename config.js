@@ -20,6 +20,9 @@ config = {
         }
       }
     },
+    storage: {
+      active: 'ghost-imgur'
+    },
     database: {
       client: 'mysql',
       connection: process.env.DATABASE_URL,
