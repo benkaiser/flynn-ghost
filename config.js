@@ -1,4 +1,4 @@
-// Ghost Configuration for Heroku
+// Ghost Configuration for Flynn
 
 var path = require('path'),
     config,
@@ -21,7 +21,10 @@ config = {
       }
     },
     storage: {
-      active: 'ghost-imgur'
+      active: 'ghost-http',
+      'ghost-http': {
+        'host': 'http://blobstore.discoverd'
+      }
     },
     database: {
       client: 'mysql',
@@ -32,6 +35,9 @@ config = {
       host: '0.0.0.0',
       port: process.env.PORT
     },
+    paths: {
+      contentPath: path.join(__dirname, '/content/')
+    }
   },
 
   // Development
@@ -43,6 +49,12 @@ config = {
         filename: path.join(__dirname, '/content/data/ghost-dev.db')
       },
       debug: false
+    },
+    storage: {
+      active: 'ghost-http',
+      'ghost-http': {
+        'host': 'http://blobstore.discoverd'
+      }
     },
     server: {
       host: '127.0.0.1',
