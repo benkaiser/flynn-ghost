@@ -28,9 +28,10 @@ util.inherits(HTTPStore, baseStore);
 
 HTTPStore.prototype.save = function (image) {
   var targetDir = this.getTargetDir(mountPoint);
+  var _this = this;
 
   return new Promise(function (resolve, reject) {
-    this.getUniqueFileName(this, image, targetDir).then(function (filename) {
+    _this.getUniqueFileName(_this, image, targetDir).then(function (filename) {
       var stream = fs.createReadStream(image.path);
       var req = http.request(_.extend(options, {
         method: 'PUT',
@@ -107,9 +108,10 @@ HTTPStore.prototype.serve = function () {
 
 HTTPStore.prototype.delete = function (fileName) {
   var targetDir = this.getTargetDir(mountPoint);
+  var _this = this;
 
   return new Promise(function (resolve, reject) {
-    this.getUniqueFileName(this, image, targetDir).then(function (filename) {
+    _this.getUniqueFileName(_this, image, targetDir).then(function (filename) {
       var stream = fs.createReadStream(image.path);
       var req = http.request(_.extend(options, {
         method: 'DELETE',
